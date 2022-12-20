@@ -6,11 +6,15 @@ import { io } from "socket.io-client";
 import "./index.css";
 import Username from "../../components/User/Username";
 import { Link } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
 
-function chatList() {
+function groupChat() {
   const [message, setMessage] = useState("");
   const [socket, setSocket] = useState(null);
   const [messages, setMessages] = useState([]);
+
+  const [group, setGroup] = useState("global");
+  const [name, setName] = useState("guest");
 
   useEffect(() => {
     const resultSocket = io("http://localhost:4000");
@@ -19,14 +23,26 @@ function chatList() {
 
   useEffect(() => {
     if (socket) {
+      socket.emit("initialRoom", { room: group });
+    }
+    console.log(group);
+    setMessages([]);
+  }, [group]);
+
+  useEffect(() => {
+    if (socket) {
       socket.on("messageBe", (data) => {
         setMessages((current) => [...current, data]);
+        console.log(data);
       });
+      console.log(socket);
     }
   }, [socket]);
 
   const handleMessage = () => {
-    socket.emit("message", message);
+    let data = { message, name, group };
+    console.log(data);
+    socket.emit("message", data);
     setMessage("");
   };
   return (
@@ -41,27 +57,33 @@ function chatList() {
             >
               <Username />
             </Link>
+            <Dropdown className="my-4">
+              <Dropdown.Toggle
+                id="dropdown-basic"
+                style={{ backgroundColor: "#7E98DF" }}
+              >
+                {group}
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={() => setGroup("global")}>
+                  global
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => setGroup("javascript")}>
+                  javascript
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => setGroup("php")}>
+                  php
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
             <input
-              type="search"
+              type="text"
+              value={name}
+              name="name"
               className="form-control"
-              placeholder="Type your message..."
+              onChange={(e) => setName(e.target.value)}
             />
-            <div className="row mt-4">
-              <div className="col-3">
-                <button className="btn">All</button>
-              </div>
-              <div className="col-5">
-                <button
-                  className="btn rounded-4"
-                  style={{ backgroundColor: "#7E98DF", color: "white" }}
-                >
-                  Important
-                </button>
-              </div>
-              <div className="col-3">
-                <button className="btn">Unread</button>
-              </div>
-            </div>
             <div className="row mt-4">
               <div className="col-2">
                 <img src={Assets.profile2} alt="" />
@@ -125,7 +147,7 @@ function chatList() {
                 <img src={Assets.profile2} alt="" />
               </div>
               <div className="col-3" style={{ marginTop: "35px" }}>
-                <h6 style={{ marginRight: "160px" }}>Theresa Webb</h6>
+                <h6 style={{ marginRight: "150px" }}>Theresa Webb</h6>
                 <h6
                   style={{
                     color: "#7E98DF",
@@ -219,4 +241,4 @@ function chatList() {
   );
 }
 
-export default chatList;
+export default groupChat;

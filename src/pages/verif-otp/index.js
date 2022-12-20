@@ -1,14 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Assets from "../../images";
-import { loginUser } from "../../redux/actions/login";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { otpPost } from "../../redux/actions/otp";
 
-function login() {
+function otp() {
   const [email_user, setEmail] = useState("");
-  const [password_user, setPassword] = useState("");
+  const [otp, setOtp] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -16,12 +14,12 @@ function login() {
   const postData = (e) => {
     e.preventDefault();
     console.log(email_user);
-    console.log(password_user);
+    console.log(otp);
     let data = {
       email_user,
-      password_user,
+      otp,
     };
-    dispatch(loginUser(data, navigate));
+    dispatch(otpPost(data, navigate));
   };
   return (
     <div>
@@ -30,9 +28,11 @@ function login() {
           <div className="col-md-12">
             <div className="container">
               <h4 className="mb-5 mt-4" style={{ color: "#7E98DF" }}>
-                Login
+                Verification
               </h4>
-              <h6 className="text-start mb-5 ms-2">Hi, Welcome back!</h6>
+              <h6 className="text-start mb-5 ms-2">
+                Please verify your account using the correct email and OTP
+              </h6>
               <form onSubmit={postData}>
                 <h6 className="form-label text-start text-secondary ms-2 mb-3">
                   Email
@@ -51,13 +51,13 @@ function login() {
                   }}
                 />
                 <h6 className="form-label text-start text-secondary ms-2 mb-3">
-                  Password
+                  OTP
                 </h6>
                 <input
-                  type="password"
+                  type="text"
                   className=" mb-4 form-control"
-                  value={password_user}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
                   style={{
                     border: "none",
                     borderBottom: "2px solid black",
@@ -65,45 +65,18 @@ function login() {
                     marginTop: "-10px",
                   }}
                 />
-                <Link to="/forgot-password" style={{ textDecoration: "none" }}>
-                  <h6 className="text-end" style={{ color: "#7E98DF" }}>
-                    Forgot password?
-                  </h6>
-                </Link>
                 <button
                   type="submit"
-                  className="btn text-white rounded-5 mt-3"
+                  className="btn text-white rounded-5 mt-3 mb-5"
                   style={{
                     backgroundColor: "#7E98DF",
                     width: "300px",
                     height: "50px",
                   }}
                 >
-                  Login
+                  Verify
                 </button>
               </form>
-              <h6 className="my-4">Login with</h6>
-              <button
-                className="btn btn-new rounded-5 mt-3 mb-5"
-                style={{
-                  borderColor: "#7E98DF",
-                  color: "#7E98DF",
-                  width: "300px",
-                  height: "50px",
-                }}
-              >
-                <img src={Assets.google} alt="" className="me-3" />
-                Google
-              </button>
-              <Link
-                to="/register"
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                <h6 className="mb-4">
-                  Don’t have an account?{" "}
-                  <h6 style={{ color: "#7E98DF" }}>Sign Up</h6>
-                </h6>
-              </Link>
             </div>
           </div>
         </div>
@@ -112,4 +85,4 @@ function login() {
   );
 }
 
-export default login;
+export default otp;

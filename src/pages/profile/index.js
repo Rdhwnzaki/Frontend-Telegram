@@ -4,10 +4,16 @@ import Assets from "../../images";
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import "./index.css";
-import Username from "../../components/User/Username";
 import { Link } from "react-router-dom";
+import { FaRegBell, FaLock } from "react-icons/fa";
+import {
+  BsFolder2Open,
+  BsFillChatSquareTextFill,
+  BsLaptop,
+} from "react-icons/bs";
+import Username from "../../components/User/Username";
 
-function chatList() {
+function Profile() {
   const [message, setMessage] = useState("");
   const [socket, setSocket] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -34,90 +40,45 @@ function chatList() {
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-3 mt-4">
-            <img src={Assets.header} alt="" />
-            <Link
-              to="/profile"
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <Username />
+            <Link to="/chat-list">
+              <img src={Assets.back} alt="" style={{ marginRight: "300px" }} />
             </Link>
-            <input
-              type="search"
-              className="form-control"
-              placeholder="Type your message..."
-            />
-            <div className="row mt-4">
-              <div className="col-3">
-                <button className="btn">All</button>
-              </div>
-              <div className="col-5">
-                <button
-                  className="btn rounded-4"
-                  style={{ backgroundColor: "#7E98DF", color: "white" }}
-                >
-                  Important
-                </button>
-              </div>
-              <div className="col-3">
-                <button className="btn">Unread</button>
-              </div>
-            </div>
-            <div className="row mt-4">
-              <div className="col-2">
-                <img src={Assets.profile2} alt="" />
-              </div>
-              <div className="col-7 offset-1">
-                <h6 className="text-start">Theresa Webb</h6>
-                <p className="text-start" style={{ color: "#7E98DF" }}>
-                  Why did you do that?
-                </p>
-              </div>
-              <div className="col-1">
-                <h6 className="text-secondary">15:20</h6>
-              </div>
-            </div>
-            <div className="row mt-4">
-              <div className="col-2">
-                <img src={Assets.profile3} alt="" />
-              </div>
-              <div className="col-7 offset-1">
-                <h6 className="text-start">Calvin Flores</h6>
-                <p className="text-start" style={{ color: "#7E98DF" }}>
-                  Hi, bro! Come to my house!
-                </p>
-              </div>
-              <div className="col-1">
-                <h6 className="text-secondary">15:13</h6>
-              </div>
-            </div>
-            <div className="row mt-4">
-              <div className="col-2">
-                <img src={Assets.profile4} alt="" />
-              </div>
-              <div className="col-7 offset-1">
-                <h6 className="text-start">Gregory Bell</h6>
-                <p className="text-start" style={{ color: "#7E98DF" }}>
-                  Will you stop ignoring me?
-                </p>
-              </div>
-              <div className="col-1">
-                <h6 className="text-secondary">15:13</h6>
-              </div>
-            </div>
-            <div className="row mt-4">
-              <div className="col-2">
-                <img src={Assets.profile5} alt="" />
-              </div>
-              <div className="col-7 offset-1">
-                <h6 className="text-start">Soham Henry</h6>
-                <p className="text-start" style={{ color: "#7E98DF" }}>
-                  Me: Bro, just fuck off
-                </p>
-              </div>
-              <div className="col-1">
-                <h6 className="text-secondary">8:30</h6>
-              </div>
-            </div>
+            <h5 style={{ color: "#7E98DF", marginTop: "-23px" }}>@wdlam</h5>
+            <Username />
+            <h6 className="text-start mb-3 mt-4">Account</h6>
+            <h6 className="text-start">+375(29)9638433</h6>
+            <h6 className="text-start mb-4" style={{ color: "#7E98DF" }}>
+              Tap to change phone number
+            </h6>
+            <hr />
+            <h6 className="text-start">@wdlam</h6>
+            <h6 className="text-start text-secondary">Username</h6>
+            <hr />
+            <h6 className="text-start  mt-4">
+              I’m Senior Frontend Developer from Microsoft
+            </h6>
+            <h6 className="text-start text-secondary mb-4">Bio</h6>
+            <h5 className="text-start">Setting</h5>
+            <h6 className="text-start my-3">
+              {" "}
+              <FaRegBell /> Notification and Sounds
+            </h6>
+            <h6 className="text-start my-3">
+              {" "}
+              <FaLock /> Privaty and Security
+            </h6>
+            <h6 className="text-start my-3">
+              {" "}
+              <BsFolder2Open /> Data and Stronge
+            </h6>
+            <h6 className="text-start my-3">
+              {" "}
+              <BsFillChatSquareTextFill /> Chat settings
+            </h6>
+            <h6 className="text-start my-3">
+              {" "}
+              <BsLaptop /> Devices
+            </h6>
           </div>
           <div className="col-md-9" style={{ backgroundColor: "#FAFAFA" }}>
             <div className="row bg-white">
@@ -125,7 +86,7 @@ function chatList() {
                 <img src={Assets.profile2} alt="" />
               </div>
               <div className="col-3" style={{ marginTop: "35px" }}>
-                <h6 style={{ marginRight: "160px" }}>Theresa Webb</h6>
+                <h6 style={{ marginRight: "150px" }}>Theresa Webb</h6>
                 <h6
                   style={{
                     color: "#7E98DF",
@@ -219,4 +180,4 @@ function chatList() {
   );
 }
 
-export default chatList;
+export default Profile;

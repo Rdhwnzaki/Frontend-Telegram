@@ -4,6 +4,9 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import ForgotPassword from "./pages/forgot-password";
 import ChatList from "./pages/chat-list";
+import Profile from "./pages/profile";
+import VerifOtp from "./pages/verif-otp";
+import GroupChat from "./pages/group-chat";
 
 function App() {
   return (
@@ -15,6 +18,9 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/chat-list" element={<ChatList />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/verif-otp" element={<VerifOtp />} />
+          <Route path="/group-chat" element={<GroupChat />} />
         </Routes>
       </BrowserRouter>
     </div>
