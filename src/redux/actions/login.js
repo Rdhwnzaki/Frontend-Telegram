@@ -5,12 +5,13 @@ export const loginUser = (data, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "LOGIN_PENDING" });
     const result = await axios.post(
-      `${process.env.REACT_APP_API_USERS}/login`,
+      `${process.env.REACT_APP_URL_BASE}/users/login`,
       data
     );
     const user = result.data.message;
     console.log(user);
     localStorage.setItem("token", user.token);
+    localStorage.setItem("user", JSON.stringify(user));
     dispatch({ type: "LOGIN_SUCCESS", payload: user });
     navigate("/chat-list");
     Swal.fire({

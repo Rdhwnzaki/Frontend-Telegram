@@ -5,7 +5,7 @@ export const otpPost = (data, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "CONFIRM_OTP_PENDING" });
     const result = await axios.post(
-      `${process.env.REACT_APP_API_USERS}/verif`,
+      `${process.env.REACT_APP_URL_BASE}/users/verif`,
       data
     );
     const otp = result.data.message;

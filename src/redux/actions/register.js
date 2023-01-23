@@ -5,7 +5,7 @@ export const regisUser = (data, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "REGISTER_PENDING" });
     const result = await axios.post(
-      `${process.env.REACT_APP_API_USERS}/register`,
+      `${process.env.REACT_APP_URL_BASE}/users/register`,
       data
     );
     const user = result.data.data;

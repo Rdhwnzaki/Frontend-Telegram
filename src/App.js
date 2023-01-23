@@ -7,8 +7,10 @@ import ChatList from "./pages/chat-list";
 import Profile from "./pages/profile";
 import VerifOtp from "./pages/verif-otp";
 import GroupChat from "./pages/group-chat";
+import socketIO from "socket.io-client";
 
 function App() {
+  const socket = socketIO.connect(process.env.REACT_APP_BACKEND_API_HOST);
   return (
     <div className="App">
       <BrowserRouter>

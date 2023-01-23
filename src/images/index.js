@@ -9,6 +9,7 @@ import profile4 from "../images/profile4.png";
 import profile5 from "../images/profile5.png";
 import profile6 from "../images/profile6.png";
 import profilemenu from "../images/profilemenu.png";
+import menu from "../images/Menu.png";
 
 const Assets = {
   google,
@@ -22,5 +23,6 @@ const Assets = {
   profile5,
   profile6,
   profilemenu,
+  menu
 };
 export default Assets;
