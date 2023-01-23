@@ -89,7 +89,7 @@ npm install
 | Profile |
 | ------- |
 
-| ![Profile](https://github.com/Rdhwnzaki/Frontend-Telegram/blob/main/screenshoot/profile.png "Profile")
+| ![Profile](https://github.com/Rdhwnzaki/Frontend-Telegram/blob/main/screenshoot/profile.png "Profile")|
 
 ## Related Project
 
